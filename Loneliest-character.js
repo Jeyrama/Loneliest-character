@@ -18,3 +18,28 @@ Examples:
 
 
 // Solution
+
+const loneliest = (str) => {
+  str = str.trim();
+  let result = []; let maxSpace = 0;
+  for(let i = 0; i < str.length; i++) {
+      let countSpace = 0;
+      if(str[i] === " ") continue;
+      for(let j = i - 1;j>=0;j--) {
+          if(str[j]!=" ") break;
+          countSpace++;
+      }
+      for(let j = i + 1;j < str.length;j++) {
+          if(str[j]!=" ") break;
+          countSpace++;
+      }
+      if(countSpace > maxSpace) {
+          result = [str[i]];
+          maxSpace = countSpace;
+      } 
+      else if(countSpace === maxSpace) {
+          result.push(str[i]);
+      }
+  }
+  return result;
+}
