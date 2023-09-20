@@ -45,3 +45,12 @@ const loneliest = (str) => {
 }
 
 // or
+
+function loneliest(str) {
+  str = str.trim();
+  let chars = str.split(/\s*/);
+  let spaces = str.split(/\S/).map(x => x.length);
+  let spacesPerChar = chars.map((c, i) => spaces[i] + spaces[i + 1]);
+  let spaceSize = spacesPerChar.reduce((t, a) => t > a ? t : a);
+  return chars.filter((c, i) => spacesPerChar[i] === spaceSize);
+}
